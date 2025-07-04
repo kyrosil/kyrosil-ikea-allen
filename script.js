@@ -68,17 +68,22 @@ document.addEventListener('DOMContentLoaded', () => {
         partsBin.innerHTML = '';
         let mainPartDiv;
         if (level.mainPart.isWall) { mainPartDiv = assemblyTarget; } else { mainPartDiv = document.createElement('div'); mainPartDiv.style.width = level.mainPart.w + 'px'; mainPartDiv.style.height = level.mainPart.h + 'px'; mainPartDiv.className = `main-part ${level.mainPart.class}`; mainPartDiv.style.position = 'relative'; assemblyTarget.appendChild(mainPartDiv); }
+        let labelCounter = {};
         level.placeholders.forEach(p => { const placeholder = document.createElement('div'); placeholder.className = 'placeholder'; placeholder.style.left = p.x + 'px'; placeholder.style.top = p.y + 'px'; placeholder.style.width = p.w + 'px'; placeholder.style.height = p.h + 'px'; placeholder.dataset.accepts = p.accepts; placeholder.dataset.label = p.label; mainPartDiv.appendChild(placeholder); });
         let partLabelCounter = {};
         level.parts.forEach(part => { 
             if(!partLabelCounter[part.id]) partLabelCounter[part.id] = 0;
             for(let i=0; i<part.q; i++) { 
                 const partEl = document.createElement('div'); 
-                const currentLabel = level.placeholders.find(p => p.accepts === part.id && !p.isUsed)?.label;
+                const matchingPlaceholders = level.placeholders.filter(p => p.accepts === part.id);
+                if(matchingPlaceholders.length > partLabelCounter[part.id]){
+                    partEl.dataset.label = matchingPlaceholders[partLabelCounter[part.id]].label;
+                } else {
+                    partEl.dataset.label = 'X'; // Sahte parça için etiket
+                }
+                partLabelCounter[part.id]++;
                 partEl.id = `${part.id}-${i}`; 
                 partEl.dataset.partType = part.id; 
-                partEl.dataset.label = level.placeholders.find((p, idx) => p.accepts === part.id && idx >= partLabelCounter[part.id])?.label || "X";
-                partLabelCounter[part.id]++;
                 partEl.className = `furniture-part ${part.class}`; 
                 partEl.style.width = `${part.w}px`; 
                 partEl.style.height = `${part.h}px`; 
@@ -90,7 +95,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     function loseLife() { if (gameState.lives > 0) { gameState.lives--; updateLivesDisplay(); saveGameState(); if (gameState.lives === 0) { handleGameOver(); }}}
     function handleGameOver() { gameState.lockoutUntil = Date.now() + 24 * 60 * 60 * 1000; saveGameState(); showLockoutScreen(); }
-    function checkWinCondition() { const level = levelData[gameState.currentLevel]; const totalParts = level.parts.reduce((sum, part) => { return part.id.startsWith('fake') ? sum : sum + part.q; }, 0); const placedParts = assemblyTarget.querySelectorAll('.placeholder .furniture-part').length; if (placedParts === totalParts) { setTimeout(handleLevelWin, 500); } }
+    
+    // ----- ** DÜZELTİLMİŞ KAZANMA KONTROLÜ ** -----
+    function checkWinCondition() { 
+        const level = levelData[gameState.currentLevel];
+        const totalPartsNeeded = level.placeholders.length; // Gerekli parça sayısı, boşluk sayısı kadardır.
+        const placedParts = assemblyTarget.querySelectorAll('.placeholder .furniture-part').length; // Sadece boşlukların içindeki parçaları say.
+        if (placedParts === totalPartsNeeded) { 
+            setTimeout(handleLevelWin, 500); 
+        } 
+    }
+
     function handleLevelWin() { const level = levelData[gameState.currentLevel]; if (level.prize) { showPrizeScreen(level); } else { showOverlay(getText('levelComplete'), `${getText('level')} ${level.level} bitti!`, getText('nextLevel'), () => { gameState.currentLevel++; saveGameState(); loadLevel(gameState.currentLevel); }); } }
     
     // ----- EVENT LISTENERS -----
@@ -121,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target === assemblyTarget || e.target.classList.contains('main-part')) {
                 assemblyTarget.classList.add('wrong');
                 setTimeout(() => assemblyTarget.classList.remove('wrong'), 500);
-                loseLife();
+                if(draggedItem) loseLife();
             }
         });
     }
