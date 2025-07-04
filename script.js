@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             updateLivesDisplay();
             assemblyTarget.innerHTML = '';
             partsBin.innerHTML = '';
-
+            
             level.placeholders.forEach(p => p.isUsed = false); // Reset usage flags
 
             let mainPartDiv;
