@@ -23,54 +23,48 @@
     <main>
         <section id="entry-screen">
             <h2 data-lang-key="entryTitle">Oyuna Hoş Geldiniz!</h2>
-            <p data-lang-key="entryDescription">Ödüllü montaj yarışmasına katılmak için bilgilerinizi girin.</p>
+            <div class="prize-info" id="prize-info-container">
+                </div>
             <form id="entry-form">
                 <input type="text" id="fullName" placeholder="Ad Soyad">
                 <input type="email" id="email" placeholder="IKEA'ya Kayıtlı E-posta Adresiniz">
                 <input type="text" id="socialUser" placeholder="Instagram / Portal Kullanıcı Adı">
-                
                 <div>
                     <input type="checkbox" id="terms-checkbox">
                     <label for="terms-checkbox">
                         <a href="#" id="terms-link" data-lang-key="termsLink">Katılım Koşulları</a>'nı okudum ve kabul ediyorum.
                     </label>
                 </div>
-                
                 <button type="submit" data-lang-key="submitButton">Yarışmaya Katıl!</button>
             </form>
         </section>
 
-        <section id="game-screen" style="display: none;">
+        <section id="game-screen" class="hidden">
             <div id="game-header">
-                <h3 data-lang-key="level">Seviye 1</h3>
-                <div id="lives-container">
-                    </div>
+                <h3 id="level-title">Seviye 1</h3>
+                <div id="lives-container"></div>
             </div>
             <div id="game-area">
-                <div id="assembly-target">
-                    <div id="table-top">
-                        <div class="leg-placeholder" data-placeholder-id="1"></div>
-                        <div class="leg-placeholder" data-placeholder-id="2"></div>
-                        <div class="leg-placeholder" data-placeholder-id="3"></div>
-                        <div class="leg-placeholder" data-placeholder-id="4"></div>
-                    </div>
-                </div>
-                <div id="parts-bin">
-                    <div class="table-leg" id="leg1" draggable="true"></div>
-                    <div class="table-leg" id="leg2" draggable="true"></div>
-                    <div class="table-leg" id="leg3" draggable="true"></div>
-                    <div class="table-leg" id="leg4" draggable="true"></div>
-                </div>
+                <div id="assembly-target"></div>
+                <div id="parts-bin"></div>
             </div>
         </section>
     </main>
 
-    <div id="terms-modal" class="modal" style="display: none;">
+    <div id="game-overlay" class="hidden">
+        <div class="overlay-content">
+            <h2 id="overlay-title"></h2>
+            <p id="overlay-message"></p>
+            <div id="overlay-prize-info"></div>
+            <button id="overlay-button"></button>
+        </div>
+    </div>
+
+    <div id="terms-modal" class="modal hidden">
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <h3 data-lang-key="termsTitle">Katılım Koşulları</h3>
-            <div id="terms-text">
-                </div>
+            <div id="terms-text"></div>
         </div>
     </div>
 
