@@ -44,10 +44,12 @@ main { width: 100%; max-width: 900px; }
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
-
+#entry-screen h2 { text-align: center; }
 .prize-info { border: 1px solid var(--ikea-blue); border-radius: 5px; padding: 15px; margin-bottom: 20px; font-size: 0.9em; }
+.prize-info h4 { margin-top:0; }
 .prize-info ul { list-style: none; padding: 0; margin: 0; }
 .prize-info li { margin-bottom: 5px; }
+.prize-info p { text-align:center; font-weight: bold; margin-top: 15px; }
 
 #entry-form { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
 #entry-form input[type="text"], #entry-form input[type="email"] { width: 95%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; }
@@ -63,9 +65,9 @@ a:hover { text-decoration: underline; }
 
 #game-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 20px; }
 #lives-container { display: flex; gap: 5px; }
-#lives-container span { font-size: 24px; }
+#lives-container span { font-size: 24px; color: var(--fail-red); }
 #game-area { display: flex; gap: 20px; min-height: 500px; }
-#assembly-target { flex-grow: 1; display: flex; justify-content: center; align-items: center; background-color: #f9f9f9; border-radius: 5px; position: relative; }
+#assembly-target { flex-grow: 1; display: flex; justify-content: center; align-items: center; background-color: #f0f0f0; border-radius: 5px; position: relative; }
 #parts-bin { width: 200px; padding: 10px; border: 1px solid #ccc; background-color: #f9f9f9; display: flex; flex-direction: column; align-items: center; gap: 15px; }
 
 .furniture-part { cursor: grab; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: transform 0.2s, box-shadow 0.2s; }
@@ -76,23 +78,18 @@ a:hover { text-decoration: underline; }
 .placeholder.wrong { animation: shake 0.5s; background-color: rgba(220, 53, 69, 0.2); }
 
 #game-overlay { display: flex; justify-content: center; align-items: center; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); }
-.overlay-content { background: white; padding: 40px; border-radius: 10px; text-align: center; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+.overlay-content { background: white; padding: 40px; border-radius: 10px; text-align: center; box-shadow: 0 0 20px rgba(0,0,0,0.5); min-width: 300px;}
 .overlay-content h2 { font-size: 2em; margin-top: 0; color: var(--ikea-blue); }
 .overlay-content p { font-size: 1.2em; }
-.overlay-content button { background-color: var(--ikea-blue); color: white; padding: 15px 30px; border: none; border-radius: 5px; font-size: 18px; cursor: pointer; margin-top: 20px; }
-a.prize-button { display: inline-block; background-color: var(--success-green); color: white; padding: 15px 30px; border-radius: 5px; font-size: 18px; margin-top: 20px; text-decoration: none; }
+#overlay-button, a.prize-button { display: inline-block; background-color: var(--ikea-blue); color: white; padding: 15px 30px; border-radius: 5px; font-size: 18px; margin-top: 20px; text-decoration: none; border: none; cursor: pointer; }
+a.prize-button { background-color: var(--success-green); }
 
 @keyframes shake {
-  0% { transform: translateX(0); }
+  0%, 100% { transform: translateX(0); }
   25% { transform: translateX(-5px); }
   50% { transform: translateX(5px); }
   75% { transform: translateX(-5px); }
-  100% { transform: translateX(0); }
 }
 
-/* Mobilya Parçaları İçin Genel Stiller */
 .part-wood { background-color: var(--wood-bg); border: 2px solid var(--wood-border); }
-.part-white { background-color: #fff; border: 2px solid #eee; }
-.part-black { background-color: #333; border: 2px solid #111; }
-.part-poang-cushion { background-color: #e0e0e0; border: 2px solid #ccc; border-radius: 15px; }
-.part-poang-frame { background-color: transparent; border: 8px solid var(--wood-border); border-radius: 20px; }
+.part-white { background-color: #fff; border: 2px solid #ddd; }
