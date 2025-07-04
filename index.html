@@ -9,10 +9,6 @@
 <body>
 
     <header>
-        <div class="logo-container">
-            <img src="https://kyrosil.eu/wp-content/uploads/2025/04/adsiz-tasarim.png" alt="Kyrosil Logosu" class="logo" id="kyrosil-logo">
-            <img src="https://kyrosil.eu/wp-content/uploads/2025/04/image-12.png" alt="IKEA Logosu" class="logo" id="ikea-logo">
-        </div>
         <nav id="language-switcher">
             <button data-lang="tr">Türkçe</button>
             <button data-lang="en">English</button>
@@ -22,9 +18,13 @@
 
     <main>
         <section id="entry-screen">
+            <div class="logo-container">
+                <img src="https://kyrosil.eu/wp-content/uploads/2025/04/adsiz-tasarim.png" alt="Kyrosil Logosu" class="logo" id="kyrosil-logo">
+                <img src="https://kyrosil.eu/wp-content/uploads/2025/04/image-12.png" alt="IKEA Logosu" class="logo" id="ikea-logo">
+            </div>
             <h2 data-lang-key="gameTitle"></h2>
             <div class="prize-info" id="prize-info-container">
-                </div>
+            </div>
             <form id="entry-form">
                 <input type="text" id="fullName" placeholder="Ad Soyad">
                 <input type="email" id="email" placeholder="IKEA'ya Kayıtlı E-posta Adresiniz">
@@ -62,7 +62,7 @@
 
     <div id="terms-modal" class="modal hidden">
         <div class="modal-content">
-            <span class="close-button">&times;</span>
+            <span class="close-button">×</span>
             <h3 data-lang-key="termsTitle">Katılım Koşulları</h3>
             <div id="terms-text"></div>
         </div>
