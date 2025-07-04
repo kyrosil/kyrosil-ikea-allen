@@ -70,12 +70,26 @@ a:hover { text-decoration: underline; }
 #assembly-target { flex-grow: 1; display: flex; justify-content: center; align-items: center; background-color: #f0f0f0; border-radius: 5px; position: relative; }
 #parts-bin { width: 200px; padding: 10px; border: 1px solid #ccc; background-color: #f9f9f9; display: flex; flex-direction: column; align-items: center; gap: 15px; }
 
+.furniture-part, .placeholder { position: relative; } /* Numaralar için eklendi */
+
+.furniture-part::before, .placeholder::before {
+    content: attr(data-label);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.4);
+    z-index: 10;
+}
+
 .furniture-part { cursor: grab; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: transform 0.2s, box-shadow 0.2s; }
 .furniture-part:active { cursor: grabbing; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transform: scale(1.05); }
 
 .placeholder { border: 2px dashed #aaa; position: absolute; background-color: rgba(0,0,0,0.05); transition: background-color 0.2s; }
 .placeholder.over { background-color: rgba(40, 167, 69, 0.2); }
-.placeholder.wrong { animation: shake 0.5s; background-color: rgba(220, 53, 69, 0.2); }
+.placeholder.wrong, #assembly-target.wrong { animation: shake 0.5s; background-color: rgba(220, 53, 69, 0.2); }
 
 #game-overlay { display: flex; justify-content: center; align-items: center; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); }
 .overlay-content { background: white; padding: 40px; border-radius: 10px; text-align: center; box-shadow: 0 0 20px rgba(0,0,0,0.5); min-width: 300px;}
@@ -93,3 +107,6 @@ a.prize-button { background-color: var(--success-green); }
 
 .part-wood { background-color: var(--wood-bg); border: 2px solid var(--wood-border); }
 .part-white { background-color: #fff; border: 2px solid #ddd; }
+.part-black { background-color: #333; border: 2px solid #111; }
+.part-poang-cushion { background-color: #e0e0e0; border: 2px solid #ccc; border-radius: 15px; }
+.part-poang-frame { background-color: transparent; border: 8px solid var(--wood-border); border-radius: 20px; }
