@@ -1,1 +1,59 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IKEA & Kyrosil - Montaj Ustası</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+    <header>
+        <div class="logo-container">
+            <img src="images/kyrosil-logo.png" alt="Kyrosil Logosu" class="logo" id="kyrosil-logo">
+            <img src="images/ikea-logo.svg" alt="IKEA Logosu" class="logo" id="ikea-logo">
+        </div>
+        <nav id="language-switcher">
+            <button data-lang="tr">Türkçe</button>
+            <button data-lang="en">English</button>
+            <button data-lang="sv">Svenska</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="entry-screen">
+            <h2 data-lang-key="entryTitle">Oyuna Hoş Geldiniz!</h2>
+            <p data-lang-key="entryDescription">Ödüllü montaj yarışmasına katılmak için bilgilerinizi girin.</p>
+            <form id="entry-form">
+                <input type="text" id="fullName" placeholder="Ad Soyad">
+                <input type="email" id="email" placeholder="IKEA'ya Kayıtlı E-posta Adresiniz">
+                <input type="text" id="socialUser" placeholder="Instagram / Portal Kullanıcı Adı">
+                
+                <div>
+                    <input type="checkbox" id="terms-checkbox">
+                    <label for="terms-checkbox">
+                        <a href="#" id="terms-link" data-lang-key="termsLink">Katılım Koşulları</a>'nı okudum ve kabul ediyorum.
+                    </label>
+                </div>
+                
+                <button type="submit" data-lang-key="submitButton">Yarışmaya Katıl!</button>
+            </form>
+        </section>
+
+        <section id="game-screen" style="display: none;">
+            <p>Oyun Alanı</p>
+        </section>
+    </main>
+
+    <div id="terms-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 data-lang-key="termsTitle">Katılım Koşulları</h3>
+            <div id="terms-text">
+                </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
