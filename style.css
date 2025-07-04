@@ -46,10 +46,20 @@ header {
 
 .logo {
     max-height: 60px;
-    border-radius: 50%;
+    border-radius: 50% !important;
     border: 2px solid var(--border-color);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: auto;
+    object-fit: contain;
+    padding: 5px;
+}
+
+#entry-screen h1 {
+    text-align: center;
+    font-size: 1.8em;
+    color: var(--ikea-blue);
+    margin-bottom: 15px;
+    font-weight: 700;
 }
 
 #language-switcher button {
@@ -81,7 +91,7 @@ main {
     background-color: #fff;
     padding: 40px;
     border-radius: 12px;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadowEFE0shadow);
 }
 
 #entry-screen h2 {
@@ -132,7 +142,7 @@ main {
 #entry-form input[type="email"] {
     width: 97%;
     padding: 15px;
-    border: 1px solid var(--border-color);
+    border:  mobilize: 1px solid var(--border-color);
     border-radius: 8px;
     font-size: 16px;
     transition: border-color 0.3s, box-shadow 0.3s;
@@ -395,7 +405,7 @@ a.prize-button:hover {
         transform: scale(0.8);
     }
     .logo {
-        max-height: 50px;
+        max-height: 60px;
     }
 }
 
@@ -416,7 +426,10 @@ a.prize-button:hover {
         font-size: 1.5em;
     }
     .logo {
-        max-height: 40px;
+        max-height: 50px;
+    }
+    #entry-screen h1 {
+        font-size: 1.4em;
     }
 }
 
