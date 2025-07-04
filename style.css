@@ -30,11 +30,11 @@ header {
     width: 100%;
     max-width: 1000px;
     display: flex;
-    justify-content: flex-end; /* Dil butonlarını sağa yasla */
+    justify-content: flex-end;
     align-items: center;
     padding-bottom: 10px;
     margin-bottom: 10px;
-    height: 40px; /* Sabit bir yükseklik verelim */
+    height: 40px;
 }
 
 main { width: 100%; max-width: 1000px; }
@@ -44,30 +44,28 @@ main { width: 100%; max-width: 1000px; }
 #entry-screen {
     background-color: #fff;
     padding: 40px;
-    border-radius: 20px; /* Daha yuvarlak kenarlar */
+    border-radius: 20px;
     box-shadow: var(--shadow);
     margin-top: 20px;
 }
 
-/* YENİ LOGO STİLLERİ */
 .logo-container { 
     display: flex; 
     align-items: center; 
-    justify-content: center; /* Logoları ortala */
-    gap: 30px; /* Aralarındaki boşluğu artır */
-    margin-bottom: 25px; /* Başlıkla arasına boşluk koy */
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 25px;
 }
 .logo { 
-    width: 100px; /* Genişlik */
-    height: 100px; /* Yükseklik */
-    border-radius: 50%; /* Tam yuvarlak yapar */
-    object-fit: contain; /* Resmi bozmadan sığdırır */
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: contain;
     background-color: white;
-    padding: 10px; /* Logo ile daire arasında boşluk */
+    padding: 10px;
     border: 2px solid var(--border-color);
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
-/* BİTTİ: YENİ LOGO STİLLERİ */
 
 #entry-screen h2 { text-align: center; font-size: 2em; color: var(--ikea-blue); margin-top: 0; }
 .prize-info { border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; margin: 20px 0; background: #fafafa; }
@@ -89,7 +87,7 @@ a:hover { text-decoration: underline; }
 .modal-content { background-color: #fefefe; margin: 10% auto; padding: 30px; border: none; width: 90%; max-width: 700px; border-radius: 12px; box-shadow: var(--shadow); position: relative; }
 .close-button { color: #aaa; position: absolute; top: 15px; right: 25px; font-size: 32px; font-weight: bold; cursor: pointer; }
 
-#game-screen { display: none; } /* JavaScript bunu değiştirecek */
+#game-screen { display: none; }
 #game-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 25px; }
 #lives-container { display: flex; gap: 5px; }
 #lives-container span { font-size: 28px; color: var(--fail-red); animation: heartbeat 1.5s ease-in-out infinite; }
@@ -97,8 +95,22 @@ a:hover { text-decoration: underline; }
 #assembly-target { flex-grow: 1; display: flex; justify-content: center; align-items: center; background-color: #f0f0f0; border-radius: 8px; position: relative; padding: 20px; transition: background-color 0.5s; }
 #parts-bin { width: 220px; padding: 15px; border: 1px solid var(--border-color); background-color: #fdfdfd; display: flex; flex-direction: column; align-items: center; gap: 20px; border-radius: 8px; }
 
+/* -- NUMARALANDIRMA İÇİN GEREKLİ STİLLER -- */
 .furniture-part, .placeholder { position: relative; }
-.furniture-part::before, .placeholder::before { content: attr(data-label); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 20px; font-weight: 700; color: rgba(0, 0, 0, 0.3); z-index: 10; text-shadow: 1px 1px 2px white; }
+.furniture-part::before, .placeholder::before {
+    content: attr(data-label);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    text-shadow: 1px 1px 2px white;
+}
+/* ------------------------------------------- */
+
 .furniture-part { cursor: grab; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
 .furniture-part:active { cursor: grabbing; box-shadow: 0 8px 20px rgba(0,0,0,0.2); transform: scale(1.05); z-index: 100; }
 
@@ -112,14 +124,13 @@ a:hover { text-decoration: underline; }
 a.prize-button { background: linear-gradient(45deg, var(--success-green), #23bf41); }
 #overlay-button:hover, a.prize-button:hover { transform: scale(1.05); }
 
-@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 50% { transform: translateX(8px); } 75% { transform: translateX(-8px); } }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 50% { transform: translateX(8px); } 75% { translateX(-8px); } }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
 
-/* MOBIL UYUM (RESPONSIVE) */
 @media (max-width: 800px) {
     body { padding: 10px; }
-    header { flex-direction: row; justify-content: flex-end; } /* Header'ı tekrar yan yana yap */
+    header { flex-direction: row; justify-content: flex-end; }
     #game-area { flex-direction: column; }
     #parts-bin { width: auto; flex-direction: row; flex-wrap: wrap; justify-content: center; }
     #assembly-target { min-height: 400px; width: 100%; box-sizing: border-box; }
@@ -131,7 +142,7 @@ a.prize-button { background: linear-gradient(45deg, var(--success-green), #23bf4
     #entry-screen, #game-screen { padding: 20px; }
     .main-part { transform: scale(0.65); }
     h2 { font-size: 1.5em; }
-    header { justify-content: center; } /* Mobilde dil butonları ortalansın */
+    header { justify-content: center; }
 }
 
 .part-wood { background-color: var(--wood-bg); border: 2px solid var(--wood-border); }
