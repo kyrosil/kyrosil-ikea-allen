@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IKEA & Kyrosil - Allen</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-placeholder"></div>
+        <nav id="language-switcher">
+            <button data-lang="tr">Türkçe</button>
+            <button data-lang="en">English</button>
+            <button data-lang="sv">Svenska</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="entry-screen">
+            <div class="logo-container">
+                <img src="https://kyrosil.eu/wp-content/uploads/2025/04/adsiz-tasarim.png" alt="Kyrosil Logosu" class="logo" id="kyrosil-logo">
+                <img src="https://kyrosil.eu/wp-content/uploads/2025/04/image-12.png" alt="IKEA Logosu" class="logo" id="ikea-logo">
+            </div>
+            <h2 data-lang-key="gameTitle"></h2>
+            <div class="prize-info" id="prize-info-container"></div>
+            <form id="entry-form">
+                <input type="text" id="fullName" placeholder="Ad Soyad">
+                <input type="email" id="email" placeholder="IKEA'ya Kayıtlı E-posta Adresiniz">
+                <input type="text" id="socialUser" placeholder="Instagram / Portal Kullanıcı Adı">
+                <div>
+                    <input type="checkbox" id="terms-checkbox">
+                    <label for="terms-checkbox">
+                        <a href="#" id="terms-link" data-lang-key="termsLink">Katılım Koşulları</a><span data-lang-key="labelTerms">'nı okudum ve kabul ediyorum.</span>
+                    </label>
+                </div>
+                <button type="submit" data-lang-key="submitButton">Yarışmaya Katıl!</button>
+            </form>
+        </section>
+
+        <section id="game-screen" class="hidden">
+            <div id="game-header">
+                <h3 id="level-title">Seviye 1</h3>
+                <div id="lives-container"></div>
+            </div>
+            <div id="game-area">
+                <div id="assembly-target"></div>
+                <div id="parts-bin"></div>
+            </div>
+        </section>
+    </main>
+
+    <div id="game-overlay" class="hidden">
+        <div class="overlay-content">
+            <h2 id="overlay-title"></h2>
+            <p id="overlay-message"></p>
+            <div id="overlay-prize-info"></div>
+            <button id="overlay-button"></button>
+        </div>
+    </div>
+
+    <div id="terms-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 data-lang-key="termsTitle">Katılım Koşulları</h3>
+            <div id="terms-text"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
