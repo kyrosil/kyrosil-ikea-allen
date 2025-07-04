@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // ---------- 1. ELEMENT SEÇİMLERİ ----------
+    // (Bu bölüm değişmedi)
     const languageSwitcher = document.getElementById('language-switcher');
     const entryScreen = document.getElementById('entry-screen');
     const entryForm = document.getElementById('entry-form');
@@ -24,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const allPlaceholders = document.getElementsByClassName('placeholder');
 
 
-    // ---------- 2. DİL VERİLERİ (TAM METİNLERLE) ----------
+    // ---------- 2. DİL VERİLERİ (Değişiklik yok) ----------
     const languageData = {
         tr: {
             gameTitle: "Montaj Ustası",
@@ -53,177 +54,71 @@ document.addEventListener('DOMContentLoaded', () => {
             labelTerms: "'nı okudum ve kabul ediyorum.",
         },
         en: {
-            gameTitle: "Assembly Masters",
-            prizeInfoTitle: "Level Prizes",
-            level2Prize: "Level 2: <strong>€10</strong> Gift Certificate",
-            level4Prize: "Level 4: <strong>€50</strong> Gift Certificate",
-            level6Prize: "Level 6: <strong>€500</strong> Grand Prize",
-            dailyLivesInfo: "You have 3 attempts per day!",
-            fullNamePlaceholder: "Full Name",
-            emailPlaceholder: "Email Address Registered with IKEA",
-            socialUserPlaceholder: "Instagram / Portal Username",
-            termsLink: "Terms & Conditions",
-            submitButton: "Join the Competition!",
-            termsTitle: "Terms & Conditions and Privacy Policy",
-            termsContent: `<h4>1. Parties and Scope</h4><p>These terms regulate the conditions for the 'IKEA Assembly Masters' ("Game"), organized by Kyrosil ("Organizer") and officially sponsored by IKEA ("Sponsor").</p><h4>2. Eligibility</h4><p>Participants must be over 18 years of age and reside in Europe. Participation is free. The accuracy of the information provided is the responsibility of the participant.</p><h4>3. Use of Personal Data</h4><p>The participant agrees that their personal data (Name, Email, Username) will be shared with the Organizer and Sponsor for competition management, winner identification, and prize distribution. The Sponsor reserves the right to use this information for marketing activities.</p><h4>4. Prizes</h4><p>Prizes are awarded to participants who successfully complete the specified levels. Prizes are non-transferable, non-exchangeable, and cannot be redeemed for cash. Winners will be contacted via the email or username provided in the form.</p>`,
-            level: "Level",
-            levelComplete: "Level Complete!",
-            nextLevel: "Next Level",
-            gameOver: "Game Over!",
-            gameOverMsg: "You have used all your lives. Please try again tomorrow.",
-            congrats: "CONGRATULATIONS!",
-            prizeClaimMsg: "To claim your prize, please send us an email by clicking the button below.",
-            claimPrize: "Claim Prize",
-            emailSubject: "Prize Claim - Level",
-            emailBody: "Hello, I have successfully completed [Level]. My participation details are below:",
-            labelTerms: "I have read and agree to the",
+            gameTitle: "Assembly Masters", prizeInfoTitle: "Level Prizes", level2Prize: "Level 2: <strong>€10</strong> Gift Certificate", level4Prize: "Level 4: <strong>€50</strong> Gift Certificate", level6Prize: "Level 6: <strong>€500</strong> Grand Prize", dailyLivesInfo: "You have 3 attempts per day!", fullNamePlaceholder: "Full Name", emailPlaceholder: "Email Address Registered with IKEA", socialUserPlaceholder: "Instagram / Portal Username", termsLink: "Terms & Conditions", submitButton: "Join the Competition!", termsTitle: "Terms & Conditions and Privacy Policy", termsContent: `<h4>1. Parties and Scope</h4><p>These terms regulate the conditions for the 'IKEA Assembly Masters' ("Game"), organized by Kyrosil ("Organizer") and officially sponsored by IKEA ("Sponsor").</p><h4>2. Eligibility</h4><p>Participants must be over 18 years of age and reside in Europe. Participation is free. The accuracy of the information provided is the responsibility of the participant.</p><h4>3. Use of Personal Data</h4><p>The participant agrees that their personal data (Name, Email, Username) will be shared with the Organizer and Sponsor for competition management, winner identification, and prize distribution. The Sponsor reserves the right to use this information for marketing activities.</p><h4>4. Prizes</h4><p>Prizes are awarded to participants who successfully complete the specified levels. Prizes are non-transferable, non-exchangeable, and cannot be redeemed for cash. Winners will be contacted via the email or username provided in the form.</p>`, level: "Level", levelComplete: "Level Complete!", nextLevel: "Next Level", gameOver: "Game Over!", gameOverMsg: "You have used all your lives. Please try again tomorrow.", congrats: "CONGRATULATIONS!", prizeClaimMsg: "To claim your prize, please send us an email by clicking the button below.", claimPrize: "Claim Prize", emailSubject: "Prize Claim - Level", emailBody: "Hello, I have successfully completed [Level]. My participation details are below:", labelTerms: "I have read and agree to the",
         },
         sv: {
-            gameTitle: "Monteringsmästare",
-            prizeInfoTitle: "Nivåpriser",
-            level2Prize: "Nivå 2: <strong>120 kr</strong> Presentkort",
-            level4Prize: "Nivå 4: <strong>600 kr</strong> Presentkort",
-            level6Prize: "Nivå 6: <strong>6000 kr</strong> Stora priset",
-            dailyLivesInfo: "Du har 3 försök per dag!",
-            fullNamePlaceholder: "Fullständigt namn",
-            emailPlaceholder: "E-postadress registrerad hos IKEA",
-            socialUserPlaceholder: "Användarnamn på Instagram / Portal",
-            termsLink: "Regler och Villkor",
-            submitButton: "Delta i tävlingen!",
-            termsTitle: "Regler och Villkor och Sekretesspolicy",
-            termsContent: `<h4>1. Parter och Omfattning</h4><p>Dessa villkor reglerar förutsättningarna för tävlingen 'IKEA Monteringsmästare' ("Spelet"), anordnad av Kyrosil ("Arrangör") och officiellt sponsrad av IKEA ("Sponsor").</p><h4>2. Deltagande</h4><p>Deltagare måste vara över 18 år och bosatta i Sverige. Deltagandet är gratis. Riktigheten av den angivna informationen är deltagarens ansvar.</p><h4>3. Användning av Personuppgifter</h4><p>Deltagaren samtycker till att hens personuppgifter (Namn, E-post, Användarnamn) delas med Arrangören och Sponsorn för tävlingshantering, identifiering av vinnare och prisutdelning. Sponsorn förbehåller sig rätten att använda denna information för marknadsföringsaktiviteter.</p><h4>4. Priser</h4><p>Priser delas ut till deltagare som framgångsrikt slutför de angivna nivåerna. Priserna kan inte överlåtas, bytas eller lösas in mot kontanter. Vinnare kommer att kontaktas via den e-postadress eller det användarnamn som anges i formuläret.</p>`,
-            level: "Nivå",
-            levelComplete: "Nivå klar!",
-            nextLevel: "Nästa nivå",
-            gameOver: "Spelet är över!",
-            gameOverMsg: "Du har använt alla dina liv. Försök igen imorgon.",
-            congrats: "GRATTIS!",
-            prizeClaimMsg: "För att hämta ditt pris, skicka ett e-postmeddelande genom att klicka på knappen nedan.",
-            claimPrize: "Hämta pris",
-            emailSubject: "Prisanspråk - Nivå",
-            emailBody: "Hej, jag har slutfört [Nivå] framgångsrikt. Mina deltagaruppgifter finns nedan:",
-            labelTerms: "Jag har läst och godkänner",
+            gameTitle: "Monteringsmästare", prizeInfoTitle: "Nivåpriser", level2Prize: "Nivå 2: <strong>120 kr</strong> Presentkort", level4Prize: "Nivå 4: <strong>600 kr</strong> Presentkort", level6Prize: "Nivå 6: <strong>6000 kr</strong> Stora priset", dailyLivesInfo: "Du har 3 försök per dag!", fullNamePlaceholder: "Fullständigt namn", emailPlaceholder: "E-postadress registrerad hos IKEA", socialUserPlaceholder: "Användarnamn på Instagram / Portal", termsLink: "Regler och Villkor", submitButton: "Delta i tävlingen!", termsTitle: "Regler och Villkor och Sekretesspolicy", termsContent: `<h4>1. Parter och Omfattning</h4><p>Dessa villkor reglerar förutsättningarna för tävlingen 'IKEA Monteringsmästare' ("Spelet"), anordnad av Kyrosil ("Arrangör") och officiellt sponsrad av IKEA ("Sponsor").</p><h4>2. Deltagande</h4><p>Deltagare måste vara över 18 år och bosatta i Sverige. Deltagandet är gratis. Riktigheten av den angivna informationen är deltagarens ansvar.</p><h4>3. Användning av Personuppgifter</h4><p>Deltagaren samtycker till att hens personuppgifter (Namn, E-post, Användarnamn) delas med Arrangören och Sponsorn för tävlingshantering, identifiering av vinnare och prisutdelning. Sponsorn förbehåller sig rätten att använda denna information för marknadsföringsaktiviteter.</p><h4>4. Priser</h4><p>Priser delas ut till deltagare som framgångsrikt slutför de angivna nivåerna. Priserna kan inte överlåtas, bytas eller lösas in mot kontanter. Vinnare kommer att kontaktas via den e-postadress eller det användarnamn som anges i formuläret.</p>`, level: "Nivå", levelComplete: "Nivå klar!", nextLevel: "Nästa nivå", gameOver: "Spelet är över!", gameOverMsg: "Du har använt alla dina liv. Försök igen imorgon.", congrats: "GRATTIS!", prizeClaimMsg: "För att hämta ditt pris, skicka ett e-postmeddelande genom att klicka på knappen nedan.", claimPrize: "Hämta pris", emailSubject: "Prisanspråk - Nivå", emailBody: "Hej, jag har slutfört [Nivå] framgångsrikt. Mina deltagaruppgifter finns nedan:", labelTerms: "Jag har läst och godkänner",
         }
     };
     
+    // ---------- 3. OYUN SEVİYE VERİLERİ (YENİ SEVİYELER EKLENDİ) ----------
     const levelData = [
         { level: 1, prize: null, productName: "LACK Sehpa", mainPart: { w: 300, h: 300, class: 'part-wood' }, parts: [{id:'leg', q:4, w:40, h:100, class:'part-wood'}], placeholders: [{x:10,y:10,w:40,h:40,accepts:'leg'},{x:250,y:10,w:40,h:40,accepts:'leg'},{x:10,y:250,w:40,h:40,accepts:'leg'},{x:250,y:250,w:40,h:40,accepts:'leg'}] },
         { level: 2, prize: {tr:"500 TL",en:"€10",sv:"120 kr"}, productName: "KALLAX Raf", mainPart: { w: 200, h: 400, class: 'part-white' }, parts: [{id:'long', q:2, w:180, h:30, class:'part-white'}, {id:'short', q:1, w:30, h:340, class:'part-white'}], placeholders: [{x:10,y:10,w:180,h:30,accepts:'long'}, {x:10,y:360,w:180,h:30,accepts:'long'}, {x:85,y:30,w:30,h:340,accepts:'short'}] },
+        { level: 3, prize: null, productName: "BERGSHULT Duvar Rafı", mainPart: { isWall: true }, parts: [{id:'shelf', q:1, w:400, h:30, class:'part-wood'}, {id:'bracketL', q:1, w:30, h:150, class:'part-white'}, {id:'bracketR', q:1, w:30, h:150, class:'part-white'}], placeholders: [{x:200,y:100,w:400,h:30,accepts:'shelf'}, {x:220,y:130,w:30,h:150,accepts:'bracketL'}, {x:590,y:130,w:30,h:150,accepts:'bracketR'}] },
+        { level: 4, prize: {tr:"2.500 TL",en:"€50",sv:"600 kr"}, productName: "BILLY Kitaplık", mainPart: { w: 400, h: 600, class: 'part-wood' }, parts: [{id:'side', q:2, w:30, h:580, class:'part-wood'}, {id:'shelf', q:4, w:340, h:20, class:'part-wood'}, {id:'back', q:1, w:380, h:580, class:'part-white'}], placeholders: [{x:10,y:10,w:30,h:580,accepts:'side'}, {x:360,y:10,w:30,h:580,accepts:'side'}, {x:10,y:290,w:380,h:20,accepts:'shelf'}, {x:10,y:10,w:380,h:20,accepts:'shelf'}, {x:10,y:570,w:380,h:20,accepts:'shelf'},{x:10,y:150,w:380,h:20,accepts:'shelf'}, {x:10,y:10,w:380,h:580,accepts:'back'}] },
+        { level: 5, prize: null, productName: "MALM Şifonyer", mainPart: { w: 400, h: 350, class: 'part-black' }, parts: [{id:'top', q:1, w:400, h:30, class:'part-black'}, {id:'drawer', q:2, w:380, h:150, class:'part-black'}, {id:'kick', q:1, w:380, h:20, class:'part-black'}], placeholders: [{x:10,y:10,w:400,h:30,accepts:'top'}, {x:10,y:50,w:380,h:150,accepts:'drawer'}, {x:10,y:210,w:380,h:150,accepts:'drawer'}, {x:10,y:370,w:380,h:20,accepts:'kick'}] },
+        { level: 6, prize: {tr:"25.000 TL",en:"€500",sv:"6000 kr"}, productName: "POÄNG Koltuk", mainPart: { isWall: true }, parts: [{id:'cushion', q:1, w:250, h:400, class:'part-poang-cushion'}, {id:'lframe', q:1, w:80, h:350, class:'part-poang-frame'}, {id:'rframe', q:1, w:80, h:350, class:'part-poang-frame'}, {id:'base', q:1, w:200, h:80, class:'part-poang-frame'}], placeholders: [{x:350,y:50,w:250,h:400,accepts:'cushion'}, {x:280,y:70,w:80,h:350,accepts:'lframe'}, {x:590,y:70,w:80,h:350,accepts:'rframe'}, {x:375,y:400,w:200,h:80,accepts:'base'}] }
     ];
     
     let gameState = { currentLevel: 0, lives: 3, lockoutUntil: null };
     let draggedItem = null;
 
+    // ----- OYUN DURUM YÖNETİMİ (Değişiklik yok) -----
     function saveGameState() { localStorage.setItem('kyrosilGameState', JSON.stringify(gameState)); }
     function loadGameState() { const savedState = JSON.parse(localStorage.getItem('kyrosilGameState')); if (savedState) { gameState = savedState; }}
     function isLockedOut() { if (!gameState.lockoutUntil) return false; if (Date.now() > gameState.lockoutUntil) { gameState.lockoutUntil = null; gameState.lives = 3; saveGameState(); return false; } return true; }
     
+    // ----- DİL VE ARAYÜZ FONKSİYONLARI (Değişiklik yok) -----
     function getText(key) { const lang = localStorage.getItem('preferredLanguage') || 'tr'; return languageData[lang][key] || key; }
-
-    function setLanguage(lang) {
-        const data = languageData[lang];
-        if (!data) return;
-        document.querySelectorAll('[data-lang-key]').forEach(el => { const key = el.getAttribute('data-lang-key'); if (data[key]) el.textContent = data[key]; });
-        gameTitleH2.textContent = data.gameTitle;
-        document.getElementById('fullName').placeholder = data.fullNamePlaceholder;
-        document.getElementById('email').placeholder = data.emailPlaceholder;
-        document.getElementById('socialUser').placeholder = data.socialUserPlaceholder;
-        const label = document.querySelector('label[for="terms-checkbox"]');
-        if (label.childNodes.length > 1) { label.childNodes[2].nodeValue = ` ${data.labelTerms}`; }
-        prizeInfoContainer.innerHTML = `<h4>${data.prizeInfoTitle}</h4><ul><li>${data.level2Prize}</li><li>${data.level4Prize}</li><li>${data.level6Prize}</li></ul><p>${data.dailyLivesInfo}</p>`;
-        document.documentElement.lang = lang;
-        localStorage.setItem('preferredLanguage', lang);
-    }
-    
+    function setLanguage(lang) { const data = languageData[lang]; if (!data) return; document.querySelectorAll('[data-lang-key]').forEach(el => { const key = el.getAttribute('data-lang-key'); if (data[key]) el.textContent = data[key]; }); gameTitleH2.textContent = data.gameTitle; document.getElementById('fullName').placeholder = data.fullNamePlaceholder; document.getElementById('email').placeholder = data.emailPlaceholder; document.getElementById('socialUser').placeholder = data.socialUserPlaceholder; const label = document.querySelector('label[for="terms-checkbox"]'); if (label.childNodes.length > 1) { label.childNodes[2].nodeValue = ` ${data.labelTerms}`; } prizeInfoContainer.innerHTML = `<h4>${data.prizeInfoTitle}</h4><ul><li>${data.level2Prize}</li><li>${data.level4Prize}</li><li>${data.level6Prize}</li></ul><p>${data.dailyLivesInfo}</p>`; document.documentElement.lang = lang; localStorage.setItem('preferredLanguage', lang); }
     function updateLivesDisplay() { livesContainer.innerHTML = ''; for (let i = 0; i < gameState.lives; i++) { const heart = document.createElement('span'); heart.textContent = '❤️'; livesContainer.appendChild(heart); }}
-    
-    function showOverlay(title, message, buttonText, buttonAction) {
-        overlayTitle.textContent = title;
-        overlayMessage.textContent = message;
-        overlayButton.style.display = 'block';
-        overlayButton.textContent = buttonText;
-        overlayButton.onclick = () => { gameOverlay.classList.add('hidden'); if(buttonAction) buttonAction(); };
-        overlayPrizeInfo.innerHTML = '';
-        gameOverlay.classList.remove('hidden');
-    }
-    
-    function showPrizeScreen(level) {
-        const lang = document.documentElement.lang;
-        const prizeValue = level.prize[lang];
-        const fullName = document.getElementById('fullName').value;
-        const email = document.getElementById('email').value;
-        overlayTitle.textContent = getText('congrats');
-        overlayMessage.textContent = getText('prizeClaimMsg');
-        overlayPrizeInfo.innerHTML = `<h3>${prizeValue}</h3>`;
-        const prizeButton = document.createElement('a');
-        prizeButton.className = 'prize-button';
-        prizeButton.textContent = getText('claimPrize');
-        const emailSubject = `${getText('emailSubject')} ${level.level}`;
-        const emailBody = `${getText('emailBody').replace('[Seviye]', `Seviye ${level.level}`)}\n\nAd Soyad: ${fullName}\nE-posta: ${email}`;
-        prizeButton.href = `mailto:giveaways@kyrosil.eu?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-        overlayPrizeInfo.appendChild(prizeButton);
-        overlayButton.textContent = getText('nextLevel');
-        overlayButton.style.display = 'block';
-        overlayButton.onclick = () => { gameOverlay.classList.add('hidden'); gameState.currentLevel++; saveGameState(); loadLevel(gameState.currentLevel); };
-        gameOverlay.classList.remove('hidden');
-    }
-
+    function showOverlay(title, message, buttonText, buttonAction) { overlayTitle.textContent = title; overlayMessage.textContent = message; overlayButton.style.display = 'block'; overlayButton.textContent = buttonText; overlayButton.onclick = () => { gameOverlay.classList.add('hidden'); if(buttonAction) buttonAction(); }; overlayPrizeInfo.innerHTML = ''; gameOverlay.classList.remove('hidden'); }
+    function showPrizeScreen(level) { const lang = document.documentElement.lang; const prizeValue = level.prize[lang]; const fullName = document.getElementById('fullName').value; const email = document.getElementById('email').value; overlayTitle.textContent = getText('congrats'); overlayMessage.textContent = getText('prizeClaimMsg'); overlayPrizeInfo.innerHTML = `<h3>${prizeValue}</h3>`; const prizeButton = document.createElement('a'); prizeButton.className = 'prize-button'; prizeButton.textContent = getText('claimPrize'); const emailSubject = `${getText('emailSubject')} ${level.level}`; const emailBody = `${getText('emailBody').replace('[Seviye]', `Seviye ${level.level}`)}\n\nAd Soyad: ${fullName}\nE-posta: ${email}`; prizeButton.href = `mailto:giveaways@kyrosil.eu?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`; overlayPrizeInfo.appendChild(prizeButton); overlayButton.textContent = getText('nextLevel'); overlayButton.style.display = 'block'; overlayButton.onclick = () => { gameOverlay.classList.add('hidden'); gameState.currentLevel++; saveGameState(); loadLevel(gameState.currentLevel); }; gameOverlay.classList.remove('hidden'); }
     function showLockoutScreen() { entryScreen.classList.add('hidden'); gameScreen.classList.add('hidden'); showOverlay(getText('gameOver'), getText('gameOverMsg'), "", null); overlayButton.style.display = 'none'; }
     
+    // ----- OYUN AKIŞI FONKSİYONLARI (Değişiklik yok)-----
     function initGame() { loadGameState(); const preferredLanguage = localStorage.getItem('preferredLanguage') || 'tr'; setLanguage(preferredLanguage); if (isLockedOut()) { showLockoutScreen(); return; } entryScreen.classList.remove('hidden'); gameScreen.classList.add('hidden'); gameOverlay.classList.add('hidden'); }
     function startGame() { entryScreen.classList.add('hidden'); gameScreen.classList.remove('hidden'); loadLevel(gameState.currentLevel); }
-
     function loadLevel(levelIndex) {
         gameOverlay.classList.add('hidden');
         const level = levelData[levelIndex];
-        if (!level) { showOverlay(getText('congrats'), "Tüm seviyeleri tamamladın!", "Baştan Başla", () => { gameState.currentLevel=0; gameState.lives=3; saveGameState(); initGame(); }); return; }
-        levelTitle.textContent = `${getText('level')} ${level.level}`;
+        if (!level) { showOverlay(getText('congrats'), "Tebrikler! Tüm seviyeleri tamamladın!", "Baştan Başla", () => { gameState.currentLevel=0; gameState.lives=3; saveGameState(); window.location.reload(); }); return; }
+        levelTitle.textContent = `${getText('level')} ${level.level}: ${level.productName}`;
         updateLivesDisplay();
         assemblyTarget.innerHTML = '';
         partsBin.innerHTML = '';
-        const mainPartDiv = document.createElement('div');
-        mainPartDiv.style.width = level.mainPart.w + 'px';
-        mainPartDiv.style.height = level.mainPart.h + 'px';
-        mainPartDiv.className = `main-part ${level.mainPart.class}`;
-        mainPartDiv.style.position = 'relative';
-        level.placeholders.forEach(p => {
-            const placeholder = document.createElement('div');
-            placeholder.className = 'placeholder';
-            placeholder.style.left = p.x + 'px';
-            placeholder.style.top = p.y + 'px';
-            placeholder.style.width = p.w + 'px';
-            placeholder.style.height = p.h + 'px';
-            placeholder.dataset.accepts = p.accepts;
-            mainPartDiv.appendChild(placeholder);
-        });
-        assemblyTarget.appendChild(mainPartDiv);
+        let mainPartDiv;
+        if (level.mainPart.isWall) {
+            mainPartDiv = assemblyTarget;
+        } else {
+            mainPartDiv = document.createElement('div');
+            mainPartDiv.style.width = level.mainPart.w + 'px';
+            mainPartDiv.style.height = level.mainPart.h + 'px';
+            mainPartDiv.className = `main-part ${level.mainPart.class}`;
+            mainPartDiv.style.position = 'relative';
+            assemblyTarget.appendChild(mainPartDiv);
+        }
+        level.placeholders.forEach(p => { const placeholder = document.createElement('div'); placeholder.className = 'placeholder'; placeholder.style.left = p.x + 'px'; placeholder.style.top = p.y + 'px'; placeholder.style.width = p.w + 'px'; placeholder.style.height = p.h + 'px'; placeholder.dataset.accepts = p.accepts; mainPartDiv.appendChild(placeholder); });
         level.parts.forEach(part => { for(let i=0; i<part.q; i++) { const partEl = document.createElement('div'); partEl.id = `${part.id}-${i}`; partEl.dataset.partType = part.id; partEl.className = `furniture-part ${part.class}`; partEl.style.width = `${part.w}px`; partEl.style.height = `${part.h}px`; partEl.draggable = true; partsBin.appendChild(partEl); }});
         addDragDropListeners();
     }
-    
     function loseLife() { if (gameState.lives > 0) { gameState.lives--; updateLivesDisplay(); saveGameState(); if (gameState.lives === 0) { handleGameOver(); }}}
     function handleGameOver() { gameState.lockoutUntil = Date.now() + 24 * 60 * 60 * 1000; saveGameState(); showLockoutScreen(); }
-
-    function checkWinCondition() {
-        const level = levelData[gameState.currentLevel];
-        const totalParts = level.parts.reduce((sum, part) => sum + part.q, 0);
-        const placedParts = assemblyTarget.querySelectorAll('.furniture-part').length;
-        if (placedParts === totalParts) { setTimeout(handleLevelWin, 500); }
-    }
-
-    function handleLevelWin() {
-        const level = levelData[gameState.currentLevel];
-        if (level.prize) {
-            showPrizeScreen(level);
-        } else {
-            showOverlay(getText('levelComplete'), '', getText('nextLevel'), () => {
-                gameState.currentLevel++;
-                saveGameState();
-                loadLevel(gameState.currentLevel);
-            });
-        }
-    }
+    function checkWinCondition() { const level = levelData[gameState.currentLevel]; const totalParts = level.parts.reduce((sum, part) => sum + part.q, 0); const placedParts = assemblyTarget.querySelectorAll('.furniture-part').length; if (placedParts === totalParts) { setTimeout(handleLevelWin, 500); } }
+    function handleLevelWin() { const level = levelData[gameState.currentLevel]; if (level.prize) { showPrizeScreen(level); } else { showOverlay(getText('levelComplete'), `${getText('level')} ${level.level} bitti!`, getText('nextLevel'), () => { gameState.currentLevel++; saveGameState(); loadLevel(gameState.currentLevel); }); } }
     
+    // ----- EVENT LISTENERS (Değişiklik yok)-----
     function addDragDropListeners() {
         const parts = document.querySelectorAll('#parts-bin .furniture-part');
         parts.forEach(part => { part.addEventListener('dragstart', e => { draggedItem = e.target; }); });
@@ -247,11 +142,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
-    
     languageSwitcher.addEventListener('click', e => { if (e.target.tagName === 'BUTTON') { setLanguage(e.target.getAttribute('data-lang')); }});
     termsLink.addEventListener('click', e => { e.preventDefault(); const lang = localStorage.getItem('preferredLanguage') || 'tr'; termsTextContainer.innerHTML = languageData[lang].termsContent; termsModal.classList.remove('hidden'); });
     closeModalButton.addEventListener('click', () => { termsModal.classList.add('hidden'); });
     entryForm.addEventListener('submit', e => { e.preventDefault(); if (!termsCheckbox.checked) { alert(getText('termsTitle') + " kabul edilmeli."); return; } startGame(); });
     
+    // ----- OYUNU BAŞLAT -----
     initGame();
 });
