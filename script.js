@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             congrats: "TEBRİKLER!",
             prizeClaimMsg: "Ödülünüzü talep etmek için aşağıdaki butona tıklayarak bize e-posta gönderin.",
             claimPrize: "Ödülü Talep Et",
-            emailSubject: "Ödül Başvurusu",
+            emailSubject: "Ödül Başvurusu - Seviye",
             emailBody: "Merhaba, [Seviye] seviyesini başarıyla tamamladım. Katılım bilgilerim aşağıdadır:",
             labelTerms: "'nı okudum ve kabul ediyorum.",
         },
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             congrats: "CONGRATULATIONS!",
             prizeClaimMsg: "To claim your prize, please send us an email by clicking the button below.",
             claimPrize: "Claim Prize",
-            emailSubject: "Prize Claim",
+            emailSubject: "Prize Claim - Level",
             emailBody: "Hello, I have successfully completed [Level]. My participation details are below:",
             labelTerms: "I have read and agree to the",
         },
@@ -91,29 +91,26 @@ document.addEventListener('DOMContentLoaded', () => {
             congrats: "GRATTIS!",
             prizeClaimMsg: "För att hämta ditt pris, skicka ett e-postmeddelande genom att klicka på knappen nedan.",
             claimPrize: "Hämta pris",
-            emailSubject: "Prisanspråk",
+            emailSubject: "Prisanspråk - Nivå",
             emailBody: "Hej, jag har slutfört [Nivå] framgångsrikt. Mina deltagaruppgifter finns nedan:",
             labelTerms: "Jag har läst och godkänner",
         }
     };
     
-    // ---------- 3. OYUN SEVİYE VERİLERİ ----------
     const levelData = [
         { level: 1, prize: null, productName: "LACK Sehpa", mainPart: { w: 300, h: 300, class: 'part-wood' }, parts: [{id:'leg', q:4, w:40, h:100, class:'part-wood'}], placeholders: [{x:10,y:10,w:40,h:40,accepts:'leg'},{x:250,y:10,w:40,h:40,accepts:'leg'},{x:10,y:250,w:40,h:40,accepts:'leg'},{x:250,y:250,w:40,h:40,accepts:'leg'}] },
         { level: 2, prize: {tr:"500 TL",en:"€10",sv:"120 kr"}, productName: "KALLAX Raf", mainPart: { w: 200, h: 400, class: 'part-white' }, parts: [{id:'long', q:2, w:180, h:30, class:'part-white'}, {id:'short', q:1, w:30, h:340, class:'part-white'}], placeholders: [{x:10,y:10,w:180,h:30,accepts:'long'}, {x:10,y:360,w:180,h:30,accepts:'long'}, {x:85,y:30,w:30,h:340,accepts:'short'}] },
+        // Not: Diğer 4 seviye buraya eklenecek.
     ];
-    // Not: Diğer seviyeler buraya eklenebilir.
-
-    // ---------- 4. OYUN DEĞİŞKENLERİ VE DURUM YÖNETİMİ ----------
+    
     let gameState = { currentLevel: 0, lives: 3, lockoutUntil: null };
     let draggedItem = null;
 
+    // ----- OYUN DURUM YÖNETİMİ -----
     function saveGameState() { localStorage.setItem('kyrosilGameState', JSON.stringify(gameState)); }
     function loadGameState() {
         const savedState = JSON.parse(localStorage.getItem('kyrosilGameState'));
-        if (savedState) {
-            gameState = savedState;
-        }
+        if (savedState) { gameState = savedState; }
     }
     function isLockedOut() {
         if (!gameState.lockoutUntil) return false;
@@ -125,58 +122,89 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return true;
     }
-
-    // ---------- 5. ANA FONKSİYONLAR ----------
+    
+    // ----- DİL VE ARAYÜZ FONKSİYONLARI -----
+    function getText(key) {
+        const lang = localStorage.getItem('preferredLanguage') || 'tr';
+        return languageData[lang][key] || key;
+    }
 
     function setLanguage(lang) {
-        // Dil verisini al
         const data = languageData[lang];
         if (!data) return;
-
-        // Metinleri güncelle
-        document.querySelectorAll('[data-lang-key]').forEach(element => {
-            const key = element.getAttribute('data-lang-key');
-            if (data[key]) element.textContent = data[key];
+        document.querySelectorAll('[data-lang-key]').forEach(el => {
+            const key = el.getAttribute('data-lang-key');
+            if (data[key]) el.textContent = data[key];
         });
         gameTitleH2.textContent = data.gameTitle;
-
-        // Giriş formu placeholder'larını güncelle
-        document.getElementById('fullName').placeholder = data.fullNamePlaceholder || "Ad Soyad";
-        document.getElementById('email').placeholder = data.emailPlaceholder || "E-posta";
-        document.getElementById('socialUser').placeholder = data.socialUserPlaceholder || "Kullanıcı Adı";
-
-        // Checkbox label'ını güncelle
+        document.getElementById('fullName').placeholder = data.fullNamePlaceholder;
+        document.getElementById('email').placeholder = data.emailPlaceholder;
+        document.getElementById('socialUser').placeholder = data.socialUserPlaceholder;
         const label = document.querySelector('label[for="terms-checkbox"]');
-        if (label.childNodes.length > 1) {
-            label.childNodes[2].nodeValue = ` ${data.labelTerms}`;
-        }
-
-        // Ödül listesini oluştur
-        prizeInfoContainer.innerHTML = `
-            <h4>${data.prizeInfoTitle}</h4>
-            <ul>
-                <li>${data.level2Prize}</li>
-                <li>${data.level4Prize}</li>
-                <li>${data.level6Prize}</li>
-            </ul>
-            <p>${data.dailyLivesInfo}</p>
-        `;
-
-        // Tarayıcı hafızasına kaydet ve HTML dilini ayarla
+        if (label.childNodes.length > 1) { label.childNodes[2].nodeValue = ` ${data.labelTerms}`; }
+        prizeInfoContainer.innerHTML = `<h4>${data.prizeInfoTitle}</h4><ul><li>${data.level2Prize}</li><li>${data.level4Prize}</li><li>${data.level6Prize}</li></ul><p>${data.dailyLivesInfo}</p>`;
         document.documentElement.lang = lang;
         localStorage.setItem('preferredLanguage', lang);
     }
+    
+    function updateLivesDisplay() {
+        livesContainer.innerHTML = '';
+        for (let i = 0; i < gameState.lives; i++) {
+            const heart = document.createElement('span');
+            heart.textContent = '❤️';
+            livesContainer.appendChild(heart);
+        }
+    }
+    
+    function showOverlay(title, message, buttonText, buttonAction) {
+        overlayTitle.textContent = title;
+        overlayMessage.textContent = message;
+        overlayButton.style.display = 'block';
+        overlayButton.textContent = buttonText;
+        overlayButton.onclick = () => {
+            gameOverlay.classList.add('hidden');
+            if(buttonAction) buttonAction();
+        };
+        overlayPrizeInfo.innerHTML = '';
+        gameOverlay.classList.remove('hidden');
+    }
+    
+    function showPrizeScreen(level) {
+        const lang = document.documentElement.lang;
+        const prizeValue = level.prize[lang];
+        const fullName = document.getElementById('fullName').value;
+        const email = document.getElementById('email').value;
+
+        overlayTitle.textContent = getText('congrats');
+        overlayMessage.textContent = getText('prizeClaimMsg');
+        overlayPrizeInfo.innerHTML = `<h3>${prizeValue}</h3>`;
+        overlayButton.style.display = 'none'; // Normal butonu gizle
+
+        const prizeButton = document.createElement('a');
+        prizeButton.className = 'prize-button';
+        prizeButton.textContent = getText('claimPrize');
+        const emailSubject = `${getText('emailSubject')} ${level.level}`;
+        const emailBody = `${getText('emailBody').replace('[Seviye]', `Seviye ${level.level}`)}\n\nAd Soyad: ${fullName}\nE-posta: ${email}`;
+        prizeButton.href = `mailto:giveaways@kyrosil.eu?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+        overlayPrizeInfo.appendChild(prizeButton);
+
+        gameOverlay.classList.remove('hidden');
+    }
+
+    function showLockoutScreen() {
+        entryScreen.classList.add('hidden');
+        gameScreen.classList.add('hidden');
+        showOverlay(getText('gameOver'), getText('gameOverMsg'), "", null);
+        overlayButton.style.display = 'none';
+    }
+
+    // ----- OYUN AKIŞI FONKSİYONLARI -----
     
     function initGame() {
         loadGameState();
         const preferredLanguage = localStorage.getItem('preferredLanguage') || 'tr';
         setLanguage(preferredLanguage);
-        
-        if (isLockedOut()) {
-            showLockoutScreen();
-            return;
-        }
-        
+        if (isLockedOut()) { showLockoutScreen(); return; }
         entryScreen.classList.remove('hidden');
         gameScreen.classList.add('hidden');
         gameOverlay.classList.add('hidden');
@@ -187,27 +215,23 @@ document.addEventListener('DOMContentLoaded', () => {
         gameScreen.classList.remove('hidden');
         loadLevel(gameState.currentLevel);
     }
-    
+
     function loadLevel(levelIndex) {
-        // ... (Bu fonksiyon bir önceki cevaptakiyle aynı şekilde çalışır)
+        gameOverlay.classList.add('hidden');
         const level = levelData[levelIndex];
-        if (!level) { 
-            showOverlay("Tüm seviyeleri tamamladın!", "Harika İş!", "Baştan Başla", () => { gameState.currentLevel=0; saveGameState(); initGame(); });
-            return; 
+        if (!level) {
+            showOverlay("Tebrikler!", "Tüm seviyeleri tamamladın!", "Baştan Başla", () => { gameState.currentLevel=0; gameState.lives=3; saveGameState(); initGame(); });
+            return;
         }
-
-        levelTitle.textContent = `${languageData[document.documentElement.lang].level} ${level.level}`;
+        levelTitle.textContent = `${getText('level')} ${level.level}`;
         updateLivesDisplay();
-
         assemblyTarget.innerHTML = '';
         partsBin.innerHTML = '';
-
         const mainPartDiv = document.createElement('div');
         mainPartDiv.style.width = level.mainPart.w + 'px';
         mainPartDiv.style.height = level.mainPart.h + 'px';
-        mainPartDiv.className = `furniture-part ${level.mainPart.class}`;
+        mainPartDiv.className = `main-part ${level.mainPart.class}`;
         mainPartDiv.style.position = 'relative';
-
         level.placeholders.forEach(p => {
             const placeholder = document.createElement('div');
             placeholder.className = 'placeholder';
@@ -219,7 +243,6 @@ document.addEventListener('DOMContentLoaded', () => {
             mainPartDiv.appendChild(placeholder);
         });
         assemblyTarget.appendChild(mainPartDiv);
-
         level.parts.forEach(part => {
             for(let i=0; i<part.q; i++) {
                 const partEl = document.createElement('div');
@@ -232,43 +255,49 @@ document.addEventListener('DOMContentLoaded', () => {
                 partsBin.appendChild(partEl);
             }
         });
-        
         addDragDropListeners();
     }
     
-    function updateLivesDisplay() {
-        livesContainer.innerHTML = '';
-        for (let i = 0; i < gameState.lives; i++) {
-            const heart = document.createElement('span');
-            heart.textContent = '❤️';
-            livesContainer.appendChild(heart);
+    function loseLife() {
+        if (gameState.lives > 0) {
+            gameState.lives--;
+            updateLivesDisplay();
+            saveGameState();
+            if (gameState.lives === 0) {
+                handleGameOver();
+            }
+        }
+    }
+    
+    function handleGameOver() {
+        gameState.lockoutUntil = Date.now() + 24 * 60 * 60 * 1000;
+        saveGameState();
+        showLockoutScreen();
+    }
+
+    function checkWinCondition() {
+        const level = levelData[gameState.currentLevel];
+        const totalParts = level.parts.reduce((sum, part) => sum + part.q, 0);
+        const placedParts = assemblyTarget.querySelectorAll('.furniture-part').length;
+        if (placedParts === totalParts) {
+            setTimeout(handleLevelWin, 500);
         }
     }
 
-    function showOverlay(title, message, buttonText, buttonAction) {
-        overlayTitle.textContent = title;
-        overlayMessage.textContent = message;
-        overlayButton.textContent = buttonText;
-        overlayButton.onclick = () => {
-            gameOverlay.classList.add('hidden');
-            if(buttonAction) buttonAction();
-        };
-        overlayPrizeInfo.innerHTML = ''; // Ödül bilgisini temizle
-        overlayButton.style.display = 'block';
-        gameOverlay.classList.remove('hidden');
+    function handleLevelWin() {
+        const level = levelData[gameState.currentLevel];
+        if (level.prize) {
+            showPrizeScreen(level);
+        } else {
+            showOverlay(getText('levelComplete'), '', getText('nextLevel'), () => {
+                gameState.currentLevel++;
+                saveGameState();
+                loadLevel(gameState.currentLevel);
+            });
+        }
     }
-
-    function showLockoutScreen() {
-        entryScreen.classList.add('hidden');
-        gameScreen.classList.add('hidden');
-        const lang = localStorage.getItem('preferredLanguage') || 'tr';
-        const data = languageData[lang];
-        showOverlay(data.gameOver, data.gameOverMsg, "OK", null);
-        overlayButton.style.display = 'none'; // OK butonu olmasın
-    }
-
-    // ---------- 6. OLAY DİNLEYİCİLERİ (EVENT LISTENERS) ----------
-
+    
+    // ----- EVENT LISTENERS -----
     function addDragDropListeners() {
         const parts = document.querySelectorAll('#parts-bin .furniture-part');
         parts.forEach(part => {
@@ -286,43 +315,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     placeholder.appendChild(draggedItem);
                     draggedItem.draggable = false;
                     draggedItem.style.cursor = 'default';
-                    // check win condition
+                    checkWinCondition(); // KAZANMA KONTROLÜ EKLENDİ
                 } else {
                     placeholder.classList.add('wrong');
                     setTimeout(() => placeholder.classList.remove('wrong'), 500);
-                    // can azaltma fonksiyonu buraya gelecek
+                    loseLife(); // CAN AZALTMA EKLENDİ
                 }
             });
         }
     }
     
-    languageSwitcher.addEventListener('click', (e) => {
-        if (e.target.tagName === 'BUTTON') {
-            setLanguage(e.target.getAttribute('data-lang'));
-        }
-    });
+    languageSwitcher.addEventListener('click', e => { if (e.target.tagName === 'BUTTON') { setLanguage(e.target.getAttribute('data-lang')); }});
+    termsLink.addEventListener('click', e => { e.preventDefault(); const lang = localStorage.getItem('preferredLanguage') || 'tr'; termsTextContainer.innerHTML = languageData[lang].termsContent; termsModal.classList.remove('hidden'); });
+    closeModalButton.addEventListener('click', () => { termsModal.classList.add('hidden'); });
+    entryForm.addEventListener('submit', e => { e.preventDefault(); if (!termsCheckbox.checked) { alert(getText('termsTitle') + " kabul edilmeli."); return; } startGame(); });
 
-    termsLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        const lang = localStorage.getItem('preferredLanguage') || 'tr';
-        termsTextContainer.innerHTML = languageData[lang].termsContent;
-        termsModal.classList.remove('hidden');
-    });
-
-    closeModalButton.addEventListener('click', () => {
-        termsModal.classList.add('hidden');
-    });
-
-    entryForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        if (!termsCheckbox.checked) {
-            const lang = localStorage.getItem('preferredLanguage') || 'tr';
-            alert(languageData[lang].termsTitle + " kabul edilmeli."); // Dil desteği eklendi
-            return;
-        }
-        startGame();
-    });
-
-    // ---------- 7. BAŞLANGIÇ ----------
+    // ----- OYUNU BAŞLAT -----
     initGame();
 });
