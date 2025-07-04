@@ -1,4 +1,12 @@
-/* --- GENEL STİLLER --- */
+:root {
+    --ikea-blue: #0058a3;
+    --ikea-yellow: #ffda1a;
+    --wood-bg: #f5f5dc;
+    --wood-border: #d2b48c;
+    --success-green: #28a745;
+    --fail-red: #dc3545;
+}
+
 body {
     font-family: 'Noto Sans', Arial, sans-serif;
     background-color: #f4f4f4;
@@ -10,10 +18,9 @@ body {
     align-items: center;
 }
 
-/* --- HEADER VE LOGOLAR --- */
 header {
     width: 100%;
-    max-width: 800px;
+    max-width: 900px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -22,208 +29,70 @@ header {
     margin-bottom: 20px;
 }
 
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
+.logo-container { display: flex; align-items: center; gap: 20px; }
+.logo { max-height: 40px; }
+#language-switcher button { background: none; border: 1px solid #ccc; padding: 5px 10px; cursor: pointer; border-radius: 5px; margin-left: 5px; transition: background-color 0.3s; }
+#language-switcher button:hover { background-color: #e9e9e9; }
 
-.logo {
-    max-height: 40px;
-}
+main { width: 100%; max-width: 900px; }
 
-#language-switcher button {
-    background: none;
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-left: 5px;
-    transition: background-color 0.3s;
-}
+.hidden { display: none !important; }
 
-#language-switcher button:hover {
-    background-color: #e9e9e9;
-}
-
-/* --- ANA İÇERİK VE GİRİŞ EKRANI --- */
-main {
-    width: 100%;
-    max-width: 800px;
-}
-
-#entry-screen {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    text-align: center;
-}
-
-#entry-screen h2 {
-    margin-top: 0;
-}
-
-/* --- FORM ELEMENTLERİ --- */
-#entry-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-#entry-form input[type="text"],
-#entry-form input[type="email"] {
-    width: 95%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-#entry-form div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-#entry-form button {
-    background-color: #0058a3;
-    color: white;
-    padding: 15px;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#entry-form button:hover {
-    background-color: #004a8c;
-}
-
-a {
-    color: #0058a3;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* --- MODAL (POP-UP PENCERE) STİLLERİ --- */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.6);
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 700px;
-    border-radius: 8px;
-    position: relative;
-}
-
-.close-button {
-    color: #aaa;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close-button:hover,
-.close-button:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* --- OYUN ALANI STİLLERİ --- */
-#game-screen {
+#entry-screen, #game-screen {
     background-color: #fff;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-#game-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+.prize-info { border: 1px solid var(--ikea-blue); border-radius: 5px; padding: 15px; margin-bottom: 20px; font-size: 0.9em; }
+.prize-info ul { list-style: none; padding: 0; margin: 0; }
+.prize-info li { margin-bottom: 5px; }
+
+#entry-form { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+#entry-form input[type="text"], #entry-form input[type="email"] { width: 95%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; }
+#entry-form div { display: flex; justify-content: center; align-items: center; gap: 10px; }
+#entry-form button { background-color: var(--ikea-blue); color: white; padding: 15px; border: none; border-radius: 5px; font-size: 18px; font-weight: bold; cursor: pointer; transition: background-color 0.3s; }
+#entry-form button:hover { background-color: #004a8c; }
+a { color: var(--ikea-blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.modal { display: block; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); }
+.modal-content { background-color: #fefefe; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 700px; border-radius: 8px; position: relative; }
+.close-button { color: #aaa; position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }
+
+#game-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 20px; }
+#lives-container { display: flex; gap: 5px; }
+#lives-container span { font-size: 24px; }
+#game-area { display: flex; gap: 20px; min-height: 500px; }
+#assembly-target { flex-grow: 1; display: flex; justify-content: center; align-items: center; background-color: #f9f9f9; border-radius: 5px; position: relative; }
+#parts-bin { width: 200px; padding: 10px; border: 1px solid #ccc; background-color: #f9f9f9; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+
+.furniture-part { cursor: grab; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: transform 0.2s, box-shadow 0.2s; }
+.furniture-part:active { cursor: grabbing; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transform: scale(1.05); }
+
+.placeholder { border: 2px dashed #aaa; position: absolute; background-color: rgba(0,0,0,0.05); transition: background-color 0.2s; }
+.placeholder.over { background-color: rgba(40, 167, 69, 0.2); }
+.placeholder.wrong { animation: shake 0.5s; background-color: rgba(220, 53, 69, 0.2); }
+
+#game-overlay { display: flex; justify-content: center; align-items: center; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); }
+.overlay-content { background: white; padding: 40px; border-radius: 10px; text-align: center; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+.overlay-content h2 { font-size: 2em; margin-top: 0; color: var(--ikea-blue); }
+.overlay-content p { font-size: 1.2em; }
+.overlay-content button { background-color: var(--ikea-blue); color: white; padding: 15px 30px; border: none; border-radius: 5px; font-size: 18px; cursor: pointer; margin-top: 20px; }
+a.prize-button { display: inline-block; background-color: var(--success-green); color: white; padding: 15px 30px; border-radius: 5px; font-size: 18px; margin-top: 20px; text-decoration: none; }
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
 }
 
-#game-area {
-    display: flex;
-    gap: 20px;
-}
-
-#assembly-target {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#table-top {
-    width: 400px;
-    height: 400px;
-    background-color: #f5f5dc;
-    border: 2px solid #d2b48c;
-    position: relative;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.leg-placeholder {
-    width: 50px;
-    height: 50px;
-    border: 2px dashed #aaa;
-    position: absolute;
-    background-color: rgba(0,0,0,0.05);
-}
-
-.leg-placeholder:nth-child(1) { top: 10px; left: 10px; }
-.leg-placeholder:nth-child(2) { top: 10px; right: 10px; }
-.leg-placeholder:nth-child(3) { bottom: 10px; left: 10px; }
-.leg-placeholder:nth-child(4) { bottom: 10px; right: 10px; }
-
-#parts-bin {
-    width: 150px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-}
-
-.table-leg {
-    width: 40px;
-    height: 120px;
-    background-color: #f5f5dc;
-    border: 2px solid #d2b48c;
-    cursor: grab;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.table-leg:active {
-    cursor: grabbing;
-}
+/* Mobilya Parçaları İçin Genel Stiller */
+.part-wood { background-color: var(--wood-bg); border: 2px solid var(--wood-border); }
+.part-white { background-color: #fff; border: 2px solid #eee; }
+.part-black { background-color: #333; border: 2px solid #111; }
+.part-poang-cushion { background-color: #e0e0e0; border: 2px solid #ccc; border-radius: 15px; }
+.part-poang-frame { background-color: transparent; border: 8px solid var(--wood-border); border-radius: 20px; }
